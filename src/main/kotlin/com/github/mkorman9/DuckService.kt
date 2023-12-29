@@ -22,14 +22,17 @@ class DuckService(
     private val db: Database
 ) {
     fun findDucks(): List<Duck> {
-        return db.from(DuckTable).select().map { row ->
-            Duck(
-                id = row[DuckTable.id]!!,
-                name = row[DuckTable.name]!!,
-                height = row[DuckTable.height]!!,
-                createdAt = row[DuckTable.createdAt]!!
-            )
-        }
+        return db
+            .from(DuckTable)
+            .select()
+            .map { row ->
+                Duck(
+                    id = row[DuckTable.id]!!,
+                    name = row[DuckTable.name]!!,
+                    height = row[DuckTable.height]!!,
+                    createdAt = row[DuckTable.createdAt]!!
+                )
+            }
     }
 
     fun addDuck(name: String, height: Int) {
