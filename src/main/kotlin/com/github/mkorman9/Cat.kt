@@ -25,6 +25,7 @@ interface Cat : Entity<Cat> {
     var name: String
     var createdAt: Instant
     var group: CatGroup?
+    //var groupId: UUID
 }
 
 object CatTable : Table<Cat>("cats") {
@@ -32,4 +33,5 @@ object CatTable : Table<Cat>("cats") {
     val name = varchar("name").bindTo { it.name }
     val createdAt = timestamp("created_at").bindTo { it.createdAt }
     val groupId = uuid("group_id").references(CatGroupTable) { it.group }
+    //val groupId = uuid("group_id").bindTo { it.groupId }
 }
